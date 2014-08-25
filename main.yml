@@ -5,9 +5,28 @@
   connection: local
 
   tasks:
-    - copy: src=./dotfiles/.bash_profile dest=/Users/wilhelm/
-    - copy: src=./dotfiles/.bash_prompt dest=/Users/wilhelm/
-    - copy: src=./dotfiles/.bashrc dest=/Users/wilhelm/
-    - copy: src=./dotfiles/.inputrc dest=/Users/wilhelm/
-    - copy: src=./dotfiles/.profile dest=/Users/wilhelm/
-    - copy: src=./dotfiles/.vimrc dest=/Users/wilhelm/
+    - name: copy bash_profile
+      copy: src=./dotfiles/.bash_profile dest=/Users/wilhelm/
+      register: bash_profile
+
+    - name: copy bash_prompt
+      copy: src=./dotfiles/.bash_prompt dest=/Users/wilhelm/
+      register: bash_prompt
+
+    - name: copy bashrc
+      copy: src=./dotfiles/.bashrc dest=/Users/wilhelm/
+      register: bashrc
+
+    - name: copy profile
+      copy: src=./dotfiles/.profile dest=/Users/wilhelm/
+      register: profile
+
+    - name: source bash profile
+      action: shell source /Users/wilhelm/.bash_profile
+      when: bash_profile.changed or bash_prompt.changed or bashrc.changed or profile.changed
+
+    - name: copy vimrc
+      copy: src=./dotfiles/.vimrc dest=/Users/wilhelm/
+
+    - name: copy inputrc
+      copy: src=./dotfiles/.inputrc dest=/Users/wilhelm/
