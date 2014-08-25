@@ -1,0 +1,5 @@
+---
+- name: Mac Setup Playbook
+  hosts: all
+  user: wilhelm
+  connection: local
