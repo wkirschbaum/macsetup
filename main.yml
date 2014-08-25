@@ -3,3 +3,11 @@
   hosts: all
   user: wilhelm
   connection: local
+
+  tasks:
+    - copy: src=./dotfiles/.bash_profile dest=/Users/wilhelm/
+    - copy: src=./dotfiles/.bash_prompt dest=/Users/wilhelm/
+    - copy: src=./dotfiles/.bashrc dest=/Users/wilhelm/
+    - copy: src=./dotfiles/.inputrc dest=/Users/wilhelm/
+    - copy: src=./dotfiles/.profile dest=/Users/wilhelm/
+    - copy: src=./dotfiles/.vimrc dest=/Users/wilhelm/
